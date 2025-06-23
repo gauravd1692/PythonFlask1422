@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read # This is required for actions/checkout
+      contents: read
  
     steps:
       - uses: actions/checkout@v4
@@ -40,8 +40,6 @@ jobs:
           pip install --upgrade pip setuptools wheel
           pip install -r requirements.txt
  
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
- 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
  
@@ -66,10 +64,15 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
  
-      - name: 'Deploy to Azure Web App'
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+ 
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: '1422Flaskpython'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DDAC869D424C459D8404C3C417F6912C }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DDAC869D424C459D8404C3C417F6912C }}
