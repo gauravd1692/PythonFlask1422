@@ -7,8 +7,8 @@ echo "======Starting custom deployment script..."
 
 # --- Install system dependencies ---
 echo "======Running apt-get update and installing system dependencies..."
-apt-get update
-apt-get install -y build-essential python3-dev pkg-config libxml2-dev libxslt1-dev libxmlsec1-dev libxmlsec1-openssl
+sudo apt-get update
+sudo apt-get install -y build-essential python3-dev pkg-config libxml2-dev libxslt1-dev libxmlsec1-dev libxmlsec1-openssl
 
 # --- Run the default Oryx build for Python ---
 # This command will activate the virtual environment and run pip install -r requirements.txt
