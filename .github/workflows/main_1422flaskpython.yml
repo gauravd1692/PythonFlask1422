@@ -24,19 +24,6 @@ jobs:
         with:
           python-version: '3.10'
 
-     - name: Install system dependencies for xmlsec
-         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            build-essential \
-            python3-dev \
-            pkg-config \
-            libxml2-dev \
-            libxslt1-dev \
-            libxmlsec1-dev \
-            libxmlsec1-openssl
- 
-
       - name: Create and start virtual environment
         run: |
           python -m venv venv
@@ -79,4 +66,4 @@ jobs:
         with:
           app-name: '1422Flaskpython'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C6125C3FE07447BD9A43953377C07D2B }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0E8034C8C9974FC0837825404876F6FA }}
